@@ -7,8 +7,8 @@ class ContextMenuActions {
     return encodeURIComponent(top.list_frame.document.location.pathname + top.list_frame.document.location.search)
   }
 
-  static folderPermissions() {
-    var folderRecordUid = this.data('folderRecordUid') || 0;
+  static folderPermissions(table, uid, additionalAttributes) {
+    var folderRecordUid = additionalAttributes['folderRecordUid'] || 0;
 
     if (folderRecordUid > 0) {
       top.TYPO3.Backend.ContentContainer.setUrl(
@@ -20,9 +20,9 @@ class ContextMenuActions {
       top.TYPO3.Backend.ContentContainer.setUrl(
         top.TYPO3.settings.FormEngine.moduleUrl
         + '&edit[tx_falsecuredownload_folder][0]=new'
-        + '&defVals[tx_falsecuredownload_folder][storage]=' + this.data('storage')
-        + '&defVals[tx_falsecuredownload_folder][folder]=' + this.data('folder')
-        + '&defVals[tx_falsecuredownload_folder][folder_hash]=' + this.data('folderHash')
+        + '&defVals[tx_falsecuredownload_folder][storage]=' + additionalAttributes['storage']
+        + '&defVals[tx_falsecuredownload_folder][folder]=' + additionalAttributes['folder']
+        + '&defVals[tx_falsecuredownload_folder][folder_hash]=' + additionalAttributes['folderHash']
         + '&returnUrl=' + ContextMenuActions.getReturnUrl()
       );
     }
