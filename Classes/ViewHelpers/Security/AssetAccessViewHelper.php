@@ -53,10 +53,10 @@ class AssetAccessViewHelper extends AbstractConditionViewHelper
      * renders <f:then> child if the current logged in FE user has access to the given asset
      * otherwise renders <f:else> child.
      *
-     * @return string
+     * @return string|null
      * @throws AspectNotFoundException
      */
-    public function render(): string
+    public function render(): ?string
     {
         return self::evaluateCondition($this->arguments) ? $this->renderThenChild() : $this->renderElseChild();
     }
