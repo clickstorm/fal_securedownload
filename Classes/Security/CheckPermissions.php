@@ -85,8 +85,7 @@ class CheckPermissions implements SingletonInterface
             return true;
         }
         $resourceStorage = $file->getStorage();
-        $storageFilePermissions = $backendUser->getTSConfig()['permissions.']['file.']['storage.'][$resourceStorage->getUid() . '.'] ?? [];
-        $resourceStorage->setUserPermissions($storageFilePermissions);
+        $resourceStorage->setUserPermissions($backendUser->getFilePermissions());
         $majorVersion = GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion();
         foreach ($GLOBALS['BE_USER']->getFileMountRecords() as $fileMountRow) {
             if ($majorVersion === 11) {
